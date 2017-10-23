@@ -33,13 +33,20 @@ mark_list = bad_list
 axis_list = ['vertical', 'horizontal', 'transposed']
 angle_gen = range(0, 360, 30)
 
-raw_list = [flip_and_rotator(mark, axis=axis, angle=angle) for mark, axis, angle in it.product(mark_list, axis_list, angle_gen)}
+raw_list = [flip_and_rotator(mark, axis=axis, angle=angle) for mark, axis, angle in it.product(mark_list, axis_list, angle_gen)]
 
 # The results
 print('Augmentated pattern : %s' % len(raw_list))
 i = 1
 for sample in raw_list:
   sample = 255 - sample
+  img = Image.fromarray(sample)
+  img = ImageOps.invert(img)
+  #img.show()
+  img_filename = path_oug + '/' + str(i) + '.png'
+  i = i + 1
+  img.save(img_filename)
+  
             
             
             
