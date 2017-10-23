@@ -21,4 +21,19 @@ for file in file_paths:
   wafer = array.astype(np.float64)
   for __ in range(0,49):
     for _ in range(0,69):
-      wafer[__,_] = (1/11)*array[__-1,__-1] +(1/11)*array[__-1,_]
+      wafer[__,_] = (1/11)*array[__-1,__-1] + (1/11)*array[__-1,_] + (1/11)*array[__-1,_+1] + (1/11)*array[__,_-1] + (3/11)*array[__,_] + (1/11)*array[__,_+1] + (1/11)*array[__+1,_-1] + (1/11)*array[__+1,_] + (1/11)*array[__+1,_+1]
+      
+      if wafer[__,_] > 0.45:
+        wafer[__,_] = 255
+      else :
+        wafer[__,_] = 0
+  
+  wafer = wafer.astype(np.uint8)
+  img = Image.fromarray(wafer).crop((10, 10, 62, 42)).resize((100,100))
+  img = ImageOps.invert(img)
+  #img.show()
+  img_filename = file.replace(path.sep+'txt'+path.sep, path.sep+'img'+path.sep)[:-4] + '.png'
+  img.save(img_filename)
+  lot_id = file.split(path.sep)[-1].split('.')[0]
+  print(lot_id, '-- image generated')
+    
