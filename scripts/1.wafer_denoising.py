@@ -1,7 +1,6 @@
 import os
 from os import path
 import numpy as np
-import pandas as pd
 from PIL import Image, ImageOps
 
 path_src = "./data/txt"
@@ -15,7 +14,7 @@ file_paths = [path.join(abspath_src, name) for name in os.listdir(path_src) if p
 for file in file_paths:
   data = np.genfromtxt(file, delimiter=';', dtype=None)
   coordinates = data[data[:,4]==b'W'][:,2:4].astype(np.uint8)
-  array = np.zeros(shape=(50,70), dype=np.uint8)
+  array = np.zeros(shape=(50,70), dtype=np.uint8)
   array[coordinates[:,1], coordinates[:,0]] = 1
   
   wafer = array.astype(np.float64)
