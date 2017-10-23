@@ -17,14 +17,14 @@ def flip_and_rotator(marked, axis=None, angle=0):
   if axis in flip_axis.key():
     flipped = flip_axis[axis](marked)
   else axis not in flip_axis.key():
-    raise Exception('')
+    raise Exception('The given axis is inappropriate.')
   
   rotated = sp.ndimage.rotate(flipped, angle, cval=255, mode='nearest', reshape=0)
   
   return rotated
 
 #%%
-file_paths = 
+file_paths = [path.join(abspath_src, name) for name in os.listdir(path_src) if path.isfile(path.join(abspath_src, name))]
 
 bad_name = sorted(glob(path_out + '/' + '*.png'))
 bad_list = list((sp.misc.imresize(sp.misc.imread(bad), size=(100,100))) for bad in bad_name)
