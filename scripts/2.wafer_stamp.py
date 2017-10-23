@@ -16,6 +16,7 @@ def flip_and_rotator(marked, axis=None, angle=0):
   
   if axis in flip_axis.key():
     flipped = flip_axis[axis](marked)
+    
   else axis not in flip_axis.key():
     raise Exception('The given axis is inappropriate.')
   
