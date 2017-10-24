@@ -6,7 +6,12 @@ import itertools as it
 from PIL import Image, ImageOps
 from glob import glob
 
-path_stamp = "./data/stamp"
+path_src = "./data/txt"
+path_out = "./data/img"
+path_stamp = "./data/img_stamp"
+abspath_src = path.abspath(path_src)
+abspath_out = path.abspath(path_out)
+
 
 def flip_and_rotator(marked, axis=None, angle=0):
   
@@ -24,7 +29,7 @@ def flip_and_rotator(marked, axis=None, angle=0):
   
   return rotated
 
-#%%
+
 file_paths = [path.join(abspath_src, name) for name in os.listdir(path_src) if path.isfile(path.join(abspath_src, name))]
 
 bad_name = sorted(glob(path_out + '/' + '*.png'))
