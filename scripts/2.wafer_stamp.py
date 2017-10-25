@@ -8,7 +8,7 @@ from glob import glob
 
 path_src = "./data/txt"
 path_out = "./data/img"
-path_stamp = "./data/img_stamp"
+path_stamp = "./data/bad_img"
 abspath_src = path.abspath(path_src)
 abspath_out = path.abspath(path_out)
 
@@ -50,7 +50,7 @@ for idx, val in enumerate(raw_list):
   img = Image.fromarray(val)
   img = ImageOps.invert(img)
   #img.show()
-  img_filename = bad_list[int(idx/angle_cnt)].replace('img', 'img_stamp')[:-4] + '_' + str(idx) + '.png'
+  img_filename = bad_list[int(idx/angle_cnt)].replace('img', path_stamp[-7:])[:-4] + '_' + str(idx) + '.png'
   img.save(img_filename)
   
             
