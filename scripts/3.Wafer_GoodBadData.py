@@ -25,3 +25,9 @@ print('TEST Bad Data : %s' % len(test_bad_data))
 test_good_list = sorted(glob(test_good_path_src + '/' + '*.png'))
 test_good_data = tuple((0, sp.misc.imresize(sp.misc.imread(good), size=(100, 100))) for good in test_good_list)
 print('TEST Good Data : %s' % len(test_good_data))
+
+train = train_bad_data + train_good_data
+print('TRAIN Bad & Good : %s' % len(train))
+
+test = test_bad_data + test_good_data
+print('TEST Bad & Good : %s' % len(test))
