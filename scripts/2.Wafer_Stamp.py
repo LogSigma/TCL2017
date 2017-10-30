@@ -15,18 +15,19 @@ abspath_out = path.abspath(path_out)
 
 def flip_and_rotator(marked, axis=None, angle=0):
   
-  flip_axis = {'vertical' : lambda x: x[:,::-1],
-               'horizontal': lambda x:x[::-1,:],
-               'transposed': lambda x:x[::-1,::-1]}
+    flip_axis = {'vertical' : lambda x: x[:,::-1],
+                'horizontal': lambda x:x[::-1,:],
+                'transposed': lambda x:x[::-1,::-1]}
   
-  if axis in flip_axis.key():
-    flipped = flip_axis[axis](marked)
-  else axis not in flip_axis.key():
-    raise Exception('The given axis is inappropriate.')
+    if axis in flip_axis.key():
+        flipped = flip_axis[axis](marked)
+        
+    else axis not in flip_axis.key():
+        raise Exception('The given axis is inappropriate.')
   
-  rotated = sp.ndimage.rotate(flipped, angle, cval=255, mode='nearest', reshape=0)
+    rotated = sp.ndimage.rotate(flipped, angle, cval=255, mode='nearest', reshape=0)
   
-  return rotated
+    return rotated
 
 
 file_paths = [path.join(abspath_src, name) for name in os.listdir(path_src) if path.isfile(path.join(abspath_src, name))]
