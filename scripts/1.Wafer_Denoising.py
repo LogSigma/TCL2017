@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image, ImageOps
 
 path_src = "./data/train/bad_csv"
-path_out = "./data/train/bad_img"
+path_out = "./data/train/img"
 abspath_src = path.abspath(path_src)
 abspath_out = path.abspath(path_out)
 
@@ -31,7 +31,7 @@ for file in file_paths:
   img = Image.fromarray(wafer).crop((10, 10, 62, 42)).resize((100,100))
   img = ImageOps.invert(img)
   #img.show()
-  img_filename = file.replace('csv', 'img')[:-4] + '.png'
+  img_filename = file.replace('bad_csv', 'img')[:-4] + '.png'
   img.save(img_filename)
   lot_id = file.split(path.sep)[-1].split('.')[0]
   print(lot_id, '-- image generated')
