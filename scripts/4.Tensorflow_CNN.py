@@ -4,11 +4,6 @@ from glob import glob
 import tensorflow as tf
 from sklearn import model_selection
 
-data = bad_data + good_data
-print('Bad & Good : %s' % len(data))
-
-train, test = model_selection.train_test_split(data, train_size=.6, test_size=.4, random_state=11)
-
 # Labels
 train_label = np.array(tuple(item[0] for item in train), dtype=np.float32)
 test_label = np.array(tuple(item[0] for item in test), dtype=np.float32)
