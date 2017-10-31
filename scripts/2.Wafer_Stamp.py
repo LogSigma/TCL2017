@@ -6,11 +6,12 @@ import itertools as it
 from PIL import Image, ImageOps
 from glob import glob
 
-path_src = "./data/train/bad_csv"
+path_src = "./data/train/bad_txt"
 path_out = "./data/train/img"
 path_stamp = "./data/train/bad_img"
 abspath_src = path.abspath(path_src)
 abspath_out = path.abspath(path_out)
+abspath_stamp = path.abspath(path_stamp)
 
 
 def flip_and_rotator(marked, axis=None, angle=0):
@@ -25,6 +26,7 @@ def flip_and_rotator(marked, axis=None, angle=0):
     else axis not in flip_axis.key():
         raise Exception('The given axis is inappropriate.')
   
+    #rotated = sp.misc.imrotated(flipped, angle, interp='nearest')
     rotated = sp.ndimage.rotate(flipped, angle, cval=255, mode='nearest', reshape=0)
   
     return rotated
@@ -50,7 +52,7 @@ for idx, val in enumerate(raw_list):
   img = Image.fromarray(val)
   img = ImageOps.invert(img)
   #img.show()
-  img_filename = bad_list[int(idx/angle_cnt)].replace('img', 'bad_img')[:-4] + '_' + str(idx) + '.png'
+  img_filename = bad_list[int(idx/angle_cnt)].replace(path_out, path_stamp)[:-4] + '_' + str(idx) + '.png'
   img.save(img_filename)
   
             
