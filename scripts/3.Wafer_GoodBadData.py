@@ -17,6 +17,8 @@ train_good_list = sorted(glob(train_good_path_src + '/' + '*.png'))
 train_good_data = tuple((0, sp.misc.imresize(sp.misc.imread(good), size=(100, 100))) for good in train_good_list)
 print('TRAIN Good Data : %s' % len(train_good_data))
 
+# data = train_bad_data + train_good_data
+# train, test = model_selection.train_test_split(data, train_size=.7, test_size=.3, random_state=11)
 
 test_bad_list = sorted(glob(test_bad_path_src + '/' + '*.png'))
 test_bad_data = tuple((1, sp.misc.imresize(sp.misc.imread(bad), size=(100, 100))) for bad in test_bad_list)
